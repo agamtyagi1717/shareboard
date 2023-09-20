@@ -1,36 +1,91 @@
 import React, { useState } from "react";
+import copyIcon from "../assets/paste.png";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RetrieveSection = () => {
-  const [id, setID] = useState('');
-  const [retrievedText, setRetrievedText]=useState('');
+  const [id, setID] = useState("");
+  const [error, setError] = useState(null);
+  const [retrievedText, setRetrievedText] = useState("");
 
   const handleIDChange = (e) => {
     setID(e.target.value);
     // console.log(id);
-  }
+  };
 
   const retrieveCopied = async (e) => {
     e.preventDefault();
 
-    const response = await fetch(`http://localhost:8000/retrieve?id=${id}`);
-    const retrieved = await response.json();
+    if (id.length === 0) {
+      setError("Enter a valid ID");
+      return;
+    }
 
-    const retrievedText=retrieved.data.text;
-    setRetrievedText(retrievedText);
-    
+    try {
+      const response = await fetch(`http://localhost:8000/retrieve?id=${id}`);
+      const retrieved = await response.json();
 
-    console.log(retrievedText);    
-  }
+      const retrievedText = retrieved.data.text;
+      setRetrievedText(retrievedText);
+    } catch (error) {
+      setError("Invalid ID");
+    }
 
+    // console.log(retrievedText);
+  };
+
+  const copyToast = () => {
+    toast.success('Copied to Clipboard', {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+  };
 
   return (
     <div className="copy-section">
       <form onSubmit={retrieveCopied} className="copy-form">
-        <textarea value={retrievedText} onChange={setRetrievedText} rows={8}></textarea>
+        <textarea
+          value={retrievedText}
+          onChange={(e) => setRetrievedText(e.target.value)}
+          rows={8}
+        ></textarea>
+        <CopyToClipboard text={retrievedText} onCopy={copyToast}>
+          <button type="button" className="copy-btn">
+            <img src={copyIcon} alt="copy-icon" className="copyIcon" />
+          </button>
+        </CopyToClipboard>
 
-        <div>
-          <input value={id} onChange={handleIDChange} className="id-input" placeholder="Enter ID"></input>
-          <button>Retrieve from Clipboard</button>
+        <ToastContainer
+          position="top-right"
+          autoClose={1000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+
+        <div className="center-retrieve">
+          <input
+            value={id}
+            onChange={handleIDChange}
+            className="id-input"
+            placeholder="Enter ID"
+          ></input>
+          <button type="submit" className="button-0">
+            Retrieve from Clipboard
+          </button>
+          {error && <p>{error}</p>}
         </div>
       </form>
     </div>

@@ -19,6 +19,11 @@ const CopySection = () => {
 
     const data = { text, code };
 
+    if(text.length===0){
+        setCode('Why would you wanna copy an empty string? Are you stupid?');
+        return;
+    }
+
     // Send a POST request to the server
     fetch("http://localhost:8000/save", {
       method: "POST",
@@ -47,8 +52,8 @@ const CopySection = () => {
     <div className="copy-section">
       <form onSubmit={handleSend} className="copy-form">
         <textarea value={text} onChange={handleTextChange} rows={8}></textarea>
-        <div>
-          <button>Send to Clipboard</button>
+        <div className="center-copy">
+          <button className="button-0">Send to Clipboard</button>
           <p className="gen-id">
             <span>Generated ID:</span> {code}
           </p>
