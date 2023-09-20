@@ -4,8 +4,6 @@ const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
 
-//SUoDjyCfLStUcKm6
-
 app.use(bodyParser.json());
 const corsOptions = {
   origin: "http://localhost:3000", // Allow requests from this origin
@@ -33,16 +31,20 @@ const dataSchema = new mongoose.Schema({
 const Data = mongoose.model("SavedText", dataSchema, "SavedText");
 
 app.post("/save", (req, res) => {
-    const { text, code } = req.body;
-  
-    // Create a new document based on the Mongoose model
-    const newData = new Data({ text, code });
-  
-    Data.create(newData);
+  const { text, code } = req.body;
+
+  // Create a new document based on the Mongoose model
+  const newData = new Data({ text, code });
+
+  Data.create(newData);
 });
-  
+
+app.get("/retrieve", async (req, res) => {
+  const code = req.query.id;
+    
+  const data = await Data.findOne({code});
+  res.json({ data });
+});
 
 const port = 8000; // Set your desired port
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+app.listen(port);

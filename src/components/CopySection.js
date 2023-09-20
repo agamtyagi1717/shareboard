@@ -7,8 +7,9 @@ const CopySection = () => {
   const [code, setCode] = useState("");
 
   const handleTextChange = (event) => {
-    setText(event.target.value);
-    if (text.length > 0) {
+    const newText = event.target.value;
+    setText(newText);
+    if (newText.length > 0) {
       setCode(generate());
     }
   };
