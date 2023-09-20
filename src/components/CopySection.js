@@ -9,20 +9,20 @@ const CopySection = () => {
   const handleTextChange = (event) => {
     const newText = event.target.value;
     setText(newText);
-    if (newText.length > 0) {
-      setCode(generate());
-    }
   };
 
   const handleSend = (e) => {
     e.preventDefault();
 
-    const data = { text, code };
-
-    if(text.length===0){
-        setCode('Why would you wanna copy an empty string? Are you stupid?');
-        return;
+    if (text.length === 0) {
+      setCode("Why would you wanna copy an empty string? Are you stupid?");
+      return;
     }
+
+    const newCode = generate();
+    setCode(newCode);
+
+    const data = { text, code: newCode };
 
     // Send a POST request to the server
     fetch("http://localhost:8000/save", {
