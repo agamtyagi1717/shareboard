@@ -25,7 +25,7 @@ const CopySection = () => {
     const data = { text, code: newCode };
 
     // Send a POST request to the server
-    fetch("http://localhost:8000/save", {
+    fetch("https://shareboard.onrender.com/save", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

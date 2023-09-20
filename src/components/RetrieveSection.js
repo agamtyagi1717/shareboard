@@ -23,7 +23,7 @@ const RetrieveSection = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:8000/retrieve?id=${id}`);
+      const response = await fetch(`https://shareboard.onrender.com/retrieve?id=${id}`);
       const retrieved = await response.json();
 
       const retrievedText = retrieved.data.text;

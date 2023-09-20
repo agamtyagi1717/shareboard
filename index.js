@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 
 app.use(bodyParser.json());
 const corsOptions = {
-  origin: "http://localhost:3000", // Allow requests from this origin
+  origin: "https://shareboard.vercel.app/", // Allow requests from this origin
   methods: "GET,POST", // Allow specified HTTP methods
   allowedHeaders: "Content-Type,Authorization", // Allow specified headers
 };
@@ -46,5 +46,6 @@ app.get("/retrieve", async (req, res) => {
   res.json({ data });
 });
 
-const port = 8000; // Set your desired port
-app.listen(port);
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, "0.0.0.0");
