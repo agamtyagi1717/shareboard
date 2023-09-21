@@ -51,7 +51,7 @@ const CopySection = () => {
   return (
     <div className="copy-section">
       <form onSubmit={handleSend} className="copy-form">
-        <textarea value={text} onChange={handleTextChange} rows={8}></textarea>
+        <textarea value={text} placeholder="Enter text to be copied here..." onChange={handleTextChange} rows={8}></textarea>
         <div className="center-copy">
           <button className="button-0">Send to Clipboard</button>
           <p className="gen-id">

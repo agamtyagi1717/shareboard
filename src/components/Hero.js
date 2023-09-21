@@ -6,7 +6,7 @@
           <h1>
               <span>ShareBoard</span> Online Clipboard
           </h1>
-          <p>enables you to seamlessly copy and paste your content across various Internet-connected devices.</p>
+          <p>enables you to seamlessly copy and paste your content across various Internet-connected devices. Save the Generated ID to access your content anytime without expiration.</p>
       </div>
     )
   }
