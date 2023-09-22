@@ -51,9 +51,17 @@ const CopySection = () => {
   return (
     <div className="copy-section">
       <form onSubmit={handleSend} className="copy-form">
-        <textarea value={text} placeholder="Enter text to be copied here..." onChange={handleTextChange} rows={8}></textarea>
+        <textarea
+          spellCheck='false'
+          value={text}
+          placeholder="Enter text to be copied here..."
+          onChange={handleTextChange}
+        ></textarea>
         <div className="center-copy">
-          <button className="button-0">Send to Clipboard</button>
+          <div>
+            <button type="submimt" className="button-0">Send to Clipboard</button>
+            {/* <button type="button" className="button-0">Upload a file</button> */}
+          </div>
           <p className="gen-id">
             <span>Generated ID:</span> {code}
           </p>

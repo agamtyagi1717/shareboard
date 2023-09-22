@@ -80,6 +80,7 @@ span{
   width: 95%;
 }
 .copy-form textarea {
+  height: 370px;
   color: var(--primaryColor);
   padding: 20px;
   -webkit-box-sizing: border-box;
@@ -121,6 +122,9 @@ textarea:focus, input:focus{
   align-items: center;
   text-align: center;
 }
+.center-copy button{  
+  margin: 0px 2px 2px 2px;
+}
 .center-retrieve{
   /* display: flex;
   flex-direction: column; */
@@ -143,6 +147,7 @@ textarea:focus, input:focus{
 }
 .footer{
   margin-top: 20px;
+  bottom: 0;
   display: flex;
   justify-content: center;
   background-color: #000;
@@ -153,6 +158,35 @@ textarea:focus, input:focus{
   padding: 8px;
   color: var(--primaryColor);
 }
+.main-body{
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+@media (max-width: 767px) {
+  .main-body {
+    flex-direction: column;
+    gap: 0;
+  }
+  .copy-form textarea{
+    height: 200px;
+  }
+}
+
+/* Scrollbar Track */
+::-webkit-scrollbar {
+  width: 7px; 
+  background-color: white; 
+  cursor: han;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--primaryColor);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primaryColor); 
+}
+
 
 
 

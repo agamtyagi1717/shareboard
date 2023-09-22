@@ -52,6 +52,7 @@ const RetrieveSection = () => {
     <div className="copy-section">
       <form onSubmit={retrieveCopied} className="copy-form">
         <textarea
+        spellCheck='false'
         placeholder="Retrieved text will appear here..."
           value={retrievedText}
           onChange={(e) => setRetrievedText(e.target.value)}
