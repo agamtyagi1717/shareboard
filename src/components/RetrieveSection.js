@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import copyIcon from "../assets/paste.png";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { ToastContainer, toast } from "react-toastify";
@@ -13,6 +13,18 @@ const RetrieveSection = () => {
     setID(e.target.value);
     // console.log(id);
   };
+
+  useEffect(() => {
+    // Make a fetch request to your Express.js backend
+    fetch('https://shareboard.onrender.com/initial')
+      .then(response => response.text())
+      .then(data => {
+        console.log(data); // Log the response to the console
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }, []);
 
   const retrieveCopied = async (e) => {
     e.preventDefault();

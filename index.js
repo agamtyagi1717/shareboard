@@ -30,6 +30,11 @@ const dataSchema = new mongoose.Schema({
 
 const Data = mongoose.model("SavedText", dataSchema, "SavedText");
 
+app.get('/initial', (req, res) => {
+  console.log('Connected to the backend');
+  res.send('Connected to the backend'); 
+});
+
 app.post("/save", (req, res) => {
   const { text, code } = req.body;
 
